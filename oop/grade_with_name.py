@@ -16,10 +16,9 @@ class Grade(object):
 
     @staticmethod
     def main():
-        kor = int(input('Korean: '))
-        eng = int(input('English: '))
-        math = int(input('Math: '))
-        grade = Grade(kor, eng, math)
+        grade = Grade(input('Input Student Name:'))
+        for i in ['Korean','English','Math']:
+            grade.addScores(int(input(f'{i}: ')))
         avg = grade.avg()
         if avg >= 90:
             result = 'A'
