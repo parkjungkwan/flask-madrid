@@ -15,18 +15,21 @@ class Contacts(object):
 
 
 def set_contact():
-    return None
+    return Contacts(input('name'),input('phone'),input('email'),input('address'))
 
 
-def get_contacts():
-    pass
+def get_contacts(ls):
+    for i in ls:
+        i.to_string()
 
 
 def del_contact(ls, name):
-    pass
+    for i, j in enumerate(ls):
+        if name == j.name:
+            del ls[i]
 
 
-def menu(ls):
+def print_menu(ls):
     # return '\t'.join(ls)
     t = ''
     for i, j in enumerate(ls):
@@ -35,20 +38,17 @@ def menu(ls):
 
 def main():
     ls = []
-    c = Contacts()
     while 1:
-        menu = menu(['exit', 'add', 'print', 'delete'])
+        menu = print_menu(['exit', 'add', 'print', 'delete'])
         if menu == 1:
             t = set_contact()
             ls.append(t)
         elif menu == 2:
-            get_contacts()
+            get_contacts(ls)
         elif menu == 3:
             del_contact(ls, input('Del Name'))
         else:
             break
-
-
 
 
 if __name__ == '__main__':
