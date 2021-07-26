@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 
+from common.menu import print_menu
+
+
 class MusicRanking(object):
     domain = ''
     query_string = ''
@@ -42,12 +45,7 @@ class MusicRanking(object):
         path = f'./data/{self.fname}.csv'
         self.df.to_csv(path, sep=',', na_rep='NaN')
 
-def print_menu(ls):
-    # return '\t'.join(ls)
-    t = ''
-    for i, j in enumerate(ls):
-        t += str(i)+'-'+j+'\t'
-    return int(input(t))
+
 
 def main():
     # 20210720
