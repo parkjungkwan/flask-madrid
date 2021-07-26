@@ -37,8 +37,9 @@ class ChangedTemperaturesOnMyBirthday():
         return [i[-1] for i in self.data]
 
     def save_highest_temperatures(self):
-        self.highest_temperatures.append([float(i[-1]) for i in self.data if i[-1] != ''])
-        print(self.highest_temperatures)
+        [self.highest_temperatures.append(float(i[-1])) for i in self.data if i[-1] != '']
+        print(f'총 {len(self.highest_temperatures)} 개')
+        # print(self.highest_temperatures)
 
     def visualize_data(self):
         pass
