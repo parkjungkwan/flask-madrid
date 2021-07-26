@@ -1,8 +1,17 @@
 import csv
+'''
+next() 는 두가지 포맷으로 사용된다.
+function 구조로 사용되면 header 만 리턴한다.
+consumer 구조로 사용되면 data에서 header 를 제거한다.
 
+row[날짜,지점,평균기온(℃),최저기온(℃),최고기온(℃)] 최고기온은 -1 이다.
+
+
+'''
 class ChangedTemperaturesOnMyBirthday():
-    data : []
-    highest_temperature : []
+
+    data : [] = list()
+    highest_temperatures: [] = list()
 
 
     def processing(self):
@@ -13,19 +22,17 @@ class ChangedTemperaturesOnMyBirthday():
 
     def read_data(self):
         data = csv.reader(open('./data/unit_5_seoul.csv', 'rt', encoding='UTF-8'))
-        data = next(data)
+        next(data)
         # print([i for i in data])
         self.data = data
 
     def show_highest_temperature(self):
-        print([i[-1] for i in self.data])
+        # print([i[-1] for i in self.data])
+        return [i[-1] for i in self.data]
 
-    def save_data_to_list(self):
-        data = self.data
-        result = []
-        for i in data:
-            if i[-1] != '':
-                result.append(float(i[-1]))
+    def save_highest_temperatures(self):
+        self.highest_temperatures.append([float(i[-1]) for i in self.data if i[-1] != ''])
+        print(self.highest_temperatures)
 
     def visualize_data(self):
         pass
@@ -36,4 +43,5 @@ class ChangedTemperaturesOnMyBirthday():
 if __name__ == '__main__':
     this = ChangedTemperaturesOnMyBirthday()
     this.read_data()
-    this.show_highest_temperature()
+    # this.show_highest_temperature()
+    this.save_highest_temperatures()
