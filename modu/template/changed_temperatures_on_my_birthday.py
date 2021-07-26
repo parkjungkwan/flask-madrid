@@ -6,7 +6,13 @@ consumer 구조로 사용되면 data에서 header 를 제거한다.
 
 row[날짜,지점,평균기온(℃),최저기온(℃),최고기온(℃)] 최고기온은 -1 이다.
 
-
+data : [] = list() 는 list 타입의 data 를 list() 로 초기화 시키는 것이다.
+단, 한 메소드 내에서만 사용하면 로컬에서 초기화한다. 예제는 다음과 같다. 
+data : [] = None
+def save_highest_temperatures(self):
+     data = list()
+그러나, 여러 메소드에서 사용하면 필드에서 초기화한다. 예제는 다음과 같다. 
+data : [] = list()
 '''
 class ChangedTemperaturesOnMyBirthday():
 
