@@ -1,4 +1,7 @@
 import csv
+
+import matplotlib.pyplot as plt
+
 '''
 next() 는 두가지 포맷으로 사용된다.
 function 구조로 사용되면 header 만 리턴한다.
@@ -41,8 +44,26 @@ class ChangedTemperaturesOnMyBirthday():
         print(f'총 {len(self.highest_temperatures)} 개')
         # print(self.highest_temperatures)
 
-    def visualize_data(self):
-        pass
+    def visualize_highest_temperatures(self):
+        plt.plot(self.highest_temperatures, 'r') # red
+        plt.figure(figsize=(20,2))
+        plt.show()
+
+    def highest_temperatures_my_birthday(self):
+        high = [] # 최고기온
+        low = [] # 최저기온
+        for i in self.data:
+            if i[-1] != '' and i[-2] != '':
+                if 1983 <= int(i[0].split('-')[0]):
+                    if i[0].split('-')[1]=='02' and i[0].split('-')[2] == '14':
+                        high.append(float(i[-1]))
+                        low.append(float(i[-2]))
+
+        plt.plot(high, 'hotpink')
+        plt.plot(low, 'skyblue')
+        plt.show()
+
+
 
     def extract_date_data(self):
         pass
@@ -51,4 +72,5 @@ if __name__ == '__main__':
     this = ChangedTemperaturesOnMyBirthday()
     this.read_data()
     # this.show_highest_temperature()
-    this.save_highest_temperatures()
+    # this.visualize_highest_temperatures()
+    this.highest_temperatures_my_birthday()
