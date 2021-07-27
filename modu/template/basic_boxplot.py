@@ -22,8 +22,13 @@ def show_boxplot_all_month():
     birth = ChangedTemperaturesOnMyBirthday()
     birth.read_data()
     arr = birth.data
-    day = []
-    []
+    month = [[], [], [], [], [], [], [], [], [], [], [], []]
+    # for i in arr:
+    #     if i[-1] != '':
+    #         month[int(i[0].split('-')[1])-1].append(float(i[-1]))
+    [month[int(i[0].split('-')[1]) - 1].append(float(i[-1])) for i in arr if i[-1] != '']
+    plt.boxplot(month)
+    plt.show()
 
 
 def show_boxplot_per_date(month: str):
