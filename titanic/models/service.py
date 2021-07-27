@@ -12,7 +12,8 @@ class Service(object):
         this.fname = payload
         return pd.read_csv(this.context + this.fname)
 
-
+def count_survived_dead():
+    return []
 
 def create_train(this):
     return this
