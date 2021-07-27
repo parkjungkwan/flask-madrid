@@ -15,24 +15,17 @@ def show_hist(ls):
     plt.hist(ls, bins=6)
     plt.show()
 
-def show_hist_about_highest_temperature(month: str):
+def highest_temperature(month: str) -> []:
     birth = ChangedTemperaturesOnMyBirthday()
     birth.read_data()
-    # [print(i) for i in birth.data]
     arr = []
-    '''
-    for i in birth.data:
-        if i[-1] != '':
-            if i[0].split('-')[1] == '08':
-                arr.append(float(i[-1]))
-    '''
     [arr.append(float(i[-1])) for i in birth.data if i[-1] != ''  if i[0].split('-')[1] == month]
+    return arr
+
+def show_hist_about(arr: [], month: str):
     plt.hist(arr, bins=100, color = 'r', label=f'{month} Month')
     plt.legend()
     plt.show()
 
 if __name__ == '__main__':
-    # ls = random_dice(1000000)
-    # print(ls)
-    # show_hist(ls)
-    show_hist_about_highest_temperature('01')
+    show_hist_about(highest_temperature('01'), month='01')
