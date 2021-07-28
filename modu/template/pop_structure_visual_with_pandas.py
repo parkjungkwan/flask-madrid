@@ -1,14 +1,17 @@
 import matplotlib.pyplot as plt
 import csv
+import pandas as pd
 
 class Population(object):
 
     data: [] = list()
 
     def read_data(self):
-        data = csv.reader(open('./data/202106_202106_연령별인구현황_월간.csv', 'rt', encoding='UTF-8'))
+        df = pd.read_csv('./data/202106_202106_연령별인구현황_월간.csv', encoding='UTF-8', thousands = ',')
+        df.to_csv('./data/202106_202106_연령별인구현황_월간_without_comma.csv', sep=',', na_rep='NaN')
+        data = csv.reader(open('./data/202106_202106_연령별인구현황_월간_without_comma.csv', 'rt', encoding='UTF-8'))
         next(data)
-        # print([i for i in data])
+        print([i for i in data])
         self.data = data
 
     def pop_per_dong(self, dong: str) -> []:
@@ -31,4 +34,4 @@ class Population(object):
 if __name__ == '__main__':
     pop = Population()
     pop.read_data()
-    pop.show_plot(pop.pop_per_dong('역삼2동'))
+    # pop.show_plot(pop.pop_per_dong('역삼2동'))
